@@ -6,6 +6,7 @@ A powerful AI-powered development platform that transforms your ideas into fully
 ![Next.js](https://img.shields.io/badge/Next.js-14-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 ![Prisma](https://img.shields.io/badge/Prisma-ORM-green)
+![Netlify](https://img.shields.io/badge/Netlify-Ready-00C7B7)
 
 ## Features
 
@@ -118,22 +119,36 @@ any-ai/
 
 ## Deployment
 
-### Vercel (Recommended)
+### Netlify (Recommended)
 
 1. Push your code to GitHub
-2. Import the repository in Vercel
-3. Add environment variables in Vercel settings
-4. Deploy!
+2. Go to [Netlify](https://app.netlify.com/) and click "Add new site"
+3. Select "Import an existing project" → Connect to GitHub
+4. Select your repository
+5. Build settings will be auto-detected from `netlify.toml`
+6. Add environment variables in Site Settings → Environment Variables:
+   - `DATABASE_URL`
+   - `NEXTAUTH_URL` (your Netlify URL, e.g., `https://your-site.netlify.app`)
+   - `NEXTAUTH_SECRET`
+   - `GOOGLE_CLIENT_ID`
+   - `GOOGLE_CLIENT_SECRET`
+7. Deploy!
 
 ### Environment Variables for Production
 
 ```env
 DATABASE_URL="your-production-database-url"
-NEXTAUTH_URL="https://your-domain.com"
+NEXTAUTH_URL="https://your-site.netlify.app"
 NEXTAUTH_SECRET="generate-a-secure-secret"
 GOOGLE_CLIENT_ID="your-google-client-id"
 GOOGLE_CLIENT_SECRET="your-google-client-secret"
 ```
+
+### Important: Update Google OAuth
+
+After deployment, add your Netlify URL to Google Cloud Console:
+- Authorized JavaScript origins: `https://your-site.netlify.app`
+- Authorized redirect URIs: `https://your-site.netlify.app/api/auth/callback/google`
 
 ## API Endpoints
 

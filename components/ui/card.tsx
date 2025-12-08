@@ -1,19 +1,18 @@
 'use client';
 
-import { forwardRef, HTMLAttributes, ReactNode } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
+import { motion, type Variants, type MotionProps } from 'framer-motion';
 
-// Omit the DOM animation handlers that conflict with Framer Motion
-interface CardProps
-  extends Omit<
-    HTMLAttributes<HTMLDivElement>,
-    'onAnimationStart' | 'onAnimationComplete'
-  > {
+// Remove any props from HTMLAttributes that collide with Framer Motion's MotionProps
+type CardBaseProps = Omit<HTMLAttributes<HTMLDivElement>, keyof MotionProps>;
+
+export interface CardProps extends CardBaseProps {
   variant?: 'default' | 'glass' | 'bordered';
   hover?: boolean;
   children: ReactNode;
 }
 
+// Base Card component
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ variant = 'default', hover = false, children, className = '', ...props }, ref) => {
     const variants = {
@@ -45,14 +44,16 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 
 Card.displayName = 'Card';
 
-// Animated card with motion
+// Animation variants
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 };
 
+// Turn Card into a motion-enabled component
 export const MotionCard = motion(Card);
 
+// Animated card wrapper
 export function AnimatedCard({
   children,
   delay = 0,

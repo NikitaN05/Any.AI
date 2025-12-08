@@ -11,11 +11,15 @@ const nextConfig = {
         hostname: 'avatars.githubusercontent.com',
       },
     ],
+    // Required for Netlify image optimization
+    unoptimized: process.env.NETLIFY === 'true',
   },
   // Disable console logs in production
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  // Output configuration for Netlify
+  output: 'standalone',
 };
 
 module.exports = nextConfig;

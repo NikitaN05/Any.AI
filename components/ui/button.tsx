@@ -1,7 +1,6 @@
 'use client';
 
 import { forwardRef, ButtonHTMLAttributes, ReactNode } from 'react';
-import { motion, HTMLMotionProps } from 'framer-motion';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'ghost' | 'outline';
@@ -86,7 +85,3 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
-
-// Motion-enabled button for animations
-export const MotionButton = motion(Button);
-
