@@ -3,7 +3,12 @@
 import { forwardRef, HTMLAttributes, ReactNode } from 'react';
 import { motion, Variants } from 'framer-motion';
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
+// Omit the DOM animation handlers that conflict with Framer Motion
+interface CardProps
+  extends Omit<
+    HTMLAttributes<HTMLDivElement>,
+    'onAnimationStart' | 'onAnimationComplete'
+  > {
   variant?: 'default' | 'glass' | 'bordered';
   hover?: boolean;
   children: ReactNode;
@@ -67,4 +72,3 @@ export function AnimatedCard({
     </MotionCard>
   );
 }
-
