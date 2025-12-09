@@ -10,11 +10,9 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# Let Next.js API routes (including NextAuth) run via the next_api function
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/next_api"
-  status = 200
+# ❗ No custom /api redirect here.
+# The Netlify Next.js plugin will create the correct
+# server handler and API routing automatically.
 
 # Security headers
 [[headers]]
